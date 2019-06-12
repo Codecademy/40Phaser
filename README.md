@@ -1,5 +1,7 @@
 # 40Phaser
 
+[![CircleCI](https://circleci.com/gh/RyzacInc/Codecademy/tree/master.svg?style=shield&circle-token=79d0879385ff207293cc57806c27c057b3181347)](https://circleci.com/gh/RyzacInc/Codecademy)
+
 <!--
 [![Circle CI](https://circleci.com/gh/Codecademy/40Phaser.svg?style=svg)](https://circleci.com/gh/Codecademy/40Phaser)
 [![NPM version](https://img.shields.io/npm/v/40Phaser.svg)](https://npmjs.org/package/40Phaser)
