@@ -1,0 +1,77 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package-lock.json" }}
+            - dependency-cache-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+
+      - run: npm run ci:build
+      - persist_to_workspace:
+          root: "."
+          paths:
+            - lib
+            - node_modules
+            - package-lock.json
+            - test/*.js
+            - test/unit
+            - util
+
+  verify_formatting:
+    docker:
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: "."
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+
+      - run: npm run prettier
+
+  verify:
+    docker:
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: "."
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+
+      - run: npm run verify:ci
+
+workflows:
+  version: 2
+  build_and_end_to_end:
+    jobs:
+      - build
+      - verify_formatting:
+          requires:
+            - build
