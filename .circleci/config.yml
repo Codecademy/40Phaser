@@ -22,7 +22,6 @@ jobs:
             - node_modules
           key: dependency-cache-1-{{ checksum "package-lock.json" }}
 
-      - run: npm run ci:build
       - persist_to_workspace:
           root: "."
           paths:
