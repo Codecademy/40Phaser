@@ -1,6 +1,6 @@
 # 40Phaser
 
-[![CircleCI](https://circleci.com/gh/RyzacInc/Codecademy/tree/master.svg?style=shield&circle-token=79d0879385ff207293cc57806c27c057b3181347)](https://circleci.com/gh/RyzacInc/Codecademy)
+[![CircleCI](https://circleci.com/gh/Codecademy40Phaser/tree/master.svg?style=shield&circle-token=79d0879385ff207293cc57806c27c057b3181347)](https://circleci.com/gh/Codecademy40Phaser)
 
 <!--
 [![Circle CI](https://circleci.com/gh/Codecademy/40Phaser.svg?style=svg)](https://circleci.com/gh/Codecademy/40Phaser)
