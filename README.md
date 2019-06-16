@@ -18,14 +18,22 @@ Documentation coming soon!
 
 ## Development
 
-After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo):
+After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and installing dependencies:
 
 ```
 git clone https://github.com/<your-name-here>/40Phaser
 cd 40Phaser
+npm i
 ```
 
-Open [`index.html`](./index.html) to start playing!
+Start a local http server to play:
+
+```shell
+npm run start
+```
+
+
+Open [`127.0.0.1:8080/src/index.html`](http://127.0.0.1:8080/src/index.html) to start playing!
 
 ### Contribution Guidelines
 

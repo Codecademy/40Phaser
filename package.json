@@ -31,12 +31,17 @@
   },
   "scripts": {
     "prettier": "prettier \"./**/*.{css,html,js}\"",
-    "prettier:write": "npm run prettier -- --write"
+    "prettier:write": "npm run prettier -- --write",
+    "start": "http-server"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "http-server": "^0.11.1",
     "husky": "^2.4.1",
     "lint-staged": "^8.2.0",
     "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "phaser": "^3.17.0"
   }
 }
