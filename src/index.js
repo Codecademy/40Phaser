@@ -1,7 +1,3 @@
-/*
-  Phaser Codey
-*/
-
 let game;
 let spacebar;
 let score = 0;
