@@ -26,7 +26,7 @@ cd 40Phaser
 npm i
 ```
 
-Start a local http server to play:
+Start a local http server using the provided VS Code [npm start task](https://code.visualstudio.com/docs/editor/tasks) or in your terminal:
 
 ```shell
 npm run start
@@ -34,6 +34,7 @@ npm run start
 
 
 Open [`127.0.0.1:8080/src/index.html`](http://127.0.0.1:8080/src/index.html) to start playing!
+Any changes you make to source files will be visible when you refresh the browser page.
 
 ### Contribution Guidelines
 
