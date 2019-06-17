@@ -32,7 +32,6 @@ Start a local http server to play:
 npm run start
 ```
 
-
 Open [`127.0.0.1:8080/src/index.html`](http://127.0.0.1:8080/src/index.html) to start playing!
 
 ### Contribution Guidelines
