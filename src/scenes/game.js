@@ -116,7 +116,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   updatePlatforms(platform) {
-    if (platform.x < 0) {
+    if (platform.x < platform.width) {
       let randDiff = Math.floor(Math.random() * 250);
       platform.x = options.windowWidth + randDiff;
     } else {
