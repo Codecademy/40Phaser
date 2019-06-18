@@ -13,7 +13,6 @@ jobs:
       - restore_cache:
           keys:
             - dependency-cache-1-{{ checksum "package-lock.json" }}
-            - dependency-cache-1-
 
       - run: npm install
 
@@ -25,8 +24,10 @@ jobs:
       - persist_to_workspace:
           root: "."
           paths:
+            - ./*
             - node_modules
             - package-lock.json
+            - src
 
   verify_formatting:
     docker:
@@ -40,10 +41,21 @@ jobs:
       - attach_workspace:
           at: "."
 
-      - restore_cache:
-          key: dependency-cache-1-{{ checksum "package-lock.json" }}
-
       - run: npm run prettier
+
+  verify_linting:
+    docker:
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: "."
+
+      - run: npm run eslint
 
 workflows:
   version: 2
@@ -51,5 +63,8 @@ workflows:
     jobs:
       - build
       - verify_formatting:
+          requires:
+            - build
+      - verify_linting:
           requires:
             - build
