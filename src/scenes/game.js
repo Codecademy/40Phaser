@@ -84,7 +84,7 @@ export default class GameScene extends Phaser.Scene {
 
     update() {
         score += 0.2;
-        scoreText.setText(Math.floor(score));
+        scoreText.setText(`Score: ${Math.floor(score)}`);
 
         if (Phaser.Input.Keyboard.JustDown(spacebar)) {
             this.jump();
