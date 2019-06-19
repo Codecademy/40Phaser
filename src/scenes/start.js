@@ -1,6 +1,5 @@
 import elements from "../elements.js";
 import options from "../options.js";
-import state from "../state.js";
 
 export default class StartScene extends Phaser.Scene {
     constructor() {
@@ -24,8 +23,8 @@ export default class StartScene extends Phaser.Scene {
         this.start_platform.body.setAllowGravity(false);
 
         elements.buttonGameStart.onclick = () => {
-            state.getGame().scene.start("GameScene");
-            state.getGame().scene.stop("StartScene");
+            this.scene.start("GameScene");
+            this.scene.stop("StartScene");
             elements.app404.style.visibility = "hidden";
             elements.app404.style.display = "none";
         };
