@@ -23,8 +23,8 @@
       "git add"
     ]
   },
-  "main": "index.js",
-  "name": "@codecademy/40phaser",
+  "main": "./src/index.js",
+  "name": "40phaser",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Codecademy/40Phaser.git"

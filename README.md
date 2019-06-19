@@ -14,26 +14,36 @@ WIP.
 
 ## Usage
 
-Documentation coming soon!
+Install the `40phaser` package on npm:
+
+```
+npm i 40phaser
+```
+
+In a webpage that already has [Phaser](https://phaser.io) available under `window.Phaser`, import and call the `launch40Phaser` function to start the game:
+
+```js
+import { launch40Phaser } from '40phaser';
+
+window.onload = () => {
+    launch40Phaser();
+};
+```
+
+Alternately, if Phaser isn't available globally, you may pass it to the game as `phaser`:
+
+```js
+import { launch40Phaser } from '40phaser';
+import phaser from 'phaser'
+
+window.onload = () => {
+    launch40Phaser({ phaser });
+};
+```
 
 ## Development
 
-After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and installing dependencies:
-
-```
-git clone https://github.com/<your-name-here>/40Phaser
-cd 40Phaser
-npm i
-```
-
-Start a local http server using the provided VS Code [npm start task](https://code.visualstudio.com/docs/editor/tasks) or in your terminal:
-
-```shell
-npm run start
-```
-
-Open [`127.0.0.1:8080/src/index.html`](http://127.0.0.1:8080/src/index.html) to start playing!
-Any changes you make to source files will be visible when you refresh the browser page.
+See [Development.md](./docs/Development.md)! ✨
 
 ### Contribution Guidelines
 
