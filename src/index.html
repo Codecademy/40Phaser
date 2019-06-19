@@ -51,6 +51,14 @@ minimal-ui"
         <script type="module">
             import "/node_modules/phaser/dist/phaser.min.js";
         </script>
-        <script type="module" src="./index.js"></script>
+        <script type="module">
+            import launch40Phaser from "./index.js";
+
+            window.addEventListener("load", () => {
+                launch40Phaser({
+                    debug: true,
+                });
+            });
+        </script>
     </body>
 </html>
