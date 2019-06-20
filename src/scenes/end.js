@@ -15,11 +15,12 @@ export default class EndScene extends Phaser.Scene {
 
         // TODO: Update display score once gameState is implemented
         // elements.endScoreDisplay.innerHTML = `Score: ${}`
-        elements.buttonGameReplay.onclick = function() {
+
+        elements.buttonGameReplay.onclick = () => {
             elements.appEnd.style.visibility = "invisible";
             elements.appEnd.style.display = "none";
             this.scene.stop("EndScene");
             this.scene.start("GameScene");
-        }.bind(this);
+        };
     }
 }
