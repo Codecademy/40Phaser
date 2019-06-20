@@ -1,5 +1,4 @@
 import elements from "../elements.js";
-import state from "../state.js";
 
 export default class EndScene extends Phaser.Scene {
     constructor() {
