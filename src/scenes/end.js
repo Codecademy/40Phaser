@@ -1,4 +1,5 @@
 import elements from "../elements.js";
+import state from "../state.js";
 
 export default class EndScene extends Phaser.Scene {
     constructor() {
@@ -14,12 +15,11 @@ export default class EndScene extends Phaser.Scene {
 
         // TODO: Update display score once gameState is implemented
         // elements.endScoreDisplay.innerHTML = `Score: ${}`
-
-        elements.buttonGameReplay.onclick = () => {
+        elements.buttonGameReplay.onclick = function() {
             elements.appEnd.style.visibility = "invisible";
             elements.appEnd.style.display = "none";
-            state.getGame().scene.stop("EndScene");
-            state.getGame().scene.start("GameScene");
-        };
+            this.scene.stop("EndScene");
+            this.scene.start("GameScene");
+        }.bind(this);
     }
 }
