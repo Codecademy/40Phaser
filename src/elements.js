@@ -3,4 +3,5 @@ export default {
     buttonGameReplay: document.getElementById("game-replay"),
     app404: document.getElementById("app-404"),
     appEnd: document.getElementById("app-end"),
+    endScoreDisplay: document.getElementById("end-score"),
 };
