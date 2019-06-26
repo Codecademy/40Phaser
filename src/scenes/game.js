@@ -18,8 +18,6 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
-        this.player = this.physics.add.sprite(100, options.windowHeight - 100, "codey");
-
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "run",
@@ -45,6 +43,8 @@ export default class GameScene extends Phaser.Scene {
             this.addPlatform(110 * i);
         }
 
+        this.player = this.physics.add.sprite(100, options.windowHeight - 100, "codey");
+
         this.player.body.checkCollision.up = false;
         this.player.body.checkCollision.left = false;
         this.player.body.checkCollision.right = false;
@@ -66,6 +66,8 @@ export default class GameScene extends Phaser.Scene {
             fontSize: "24px",
             fill: "#000",
         });
+
+        // Adding
     }
 
     addPlatform(platformX = options.windowWidth) {
