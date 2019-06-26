@@ -3,6 +3,8 @@ import options from "../options.js";
 let spacebar;
 let score = 0;
 let scoreText;
+// if gamePlaying is true, then the game isn't paused
+let gamePlaying = true;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -67,7 +69,29 @@ export default class GameScene extends Phaser.Scene {
             fill: "#000",
         });
 
-        // Adding
+        // add pause button with text
+        const togglePause = this.add.rectangle(options.windowWidth, 25, 150, 30, 0x6400e4);
+        togglePause.setInteractive();
+
+        togglePause.text = this.add.text(options.windowWidth - 65, 13, "pause", {
+            fontSize: "17px",
+            fill: "#fff",
+        });
+
+        togglePause.on("pointerup", () => {
+            if (gamePlaying) {
+                togglePause.text.setText("resume");
+                togglePause.text.x -= 3;
+                this.physics.pause();
+                this.anims.pauseAll();
+            } else {
+                togglePause.text.setText("pause");
+                togglePause.text.x += 3;
+                this.physics.resume();
+                this.anims.resumeAll();
+            }
+            gamePlaying = !gamePlaying;
+        });
     }
 
     addPlatform(platformX = options.windowWidth) {
@@ -85,22 +109,25 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update() {
-        score += 0.2;
-        scoreText.setText(`Score: ${Math.floor(score)}`);
+        // game mechanics occur only if gamePlaying is true
+        if (gamePlaying) {
+            score += 0.2;
+            scoreText.setText(`Score: ${Math.floor(score)}`);
 
-        if (Phaser.Input.Keyboard.JustDown(spacebar)) {
-            this.jump();
+            if (Phaser.Input.Keyboard.JustDown(spacebar)) {
+                this.jump();
+            }
+            if (!this.player.body.touching.down) {
+                this.player.anims.play("jump", true);
+            } else {
+                this.player.anims.play("run", true);
+            }
+            if (this.player.y > options.windowHeight) {
+                this.scene.stop("GameScene");
+                this.scene.start("EndScene");
+            }
+            this.platforms.children.iterate(this.updatePlatforms, this);
         }
-        if (!this.player.body.touching.down) {
-            this.player.anims.play("jump", true);
-        } else {
-            this.player.anims.play("run", true);
-        }
-        if (this.player.y > options.windowHeight) {
-            this.scene.stop("GameScene");
-            this.scene.start("EndScene");
-        }
-        this.platforms.children.iterate(this.updatePlatforms, this);
     }
 
     updatePlatforms(platform) {
