@@ -17,7 +17,7 @@ export default class EndScene extends Phaser.Scene {
             elements.appEnd.style.visibility = "invisible";
             elements.appEnd.style.display = "none";
             this.scene.stop("EndScene");
-            this.scene.start("GameScene");
+            this.scene.start("GameScene", { score: 0 });
         };
     }
 }

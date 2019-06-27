@@ -19,7 +19,8 @@ export default class GameScene extends Phaser.Scene {
         });
     }
 
-    create() {
+    create(data) {
+        score = data.score ? data.score : 0;
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "run",
