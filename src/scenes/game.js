@@ -124,7 +124,7 @@ export default class GameScene extends Phaser.Scene {
             }
             if (this.player.y > options.windowHeight) {
                 this.scene.stop("GameScene");
-                this.scene.start("EndScene");
+                this.scene.start("EndScene", { score });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
