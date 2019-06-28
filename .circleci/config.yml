@@ -1,5 +1,11 @@
 version: 2.1
 
+references:
+    set_npm_token: &set_npm_token
+        run:
+            name: Add NPM auth token file
+            command: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+
 jobs:
     build:
         docker:
@@ -28,6 +34,22 @@ jobs:
                       - node_modules
                       - package-lock.json
                       - src
+
+    publish:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - *set_npm_token
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm publish || exit 0
 
     verify_formatting:
         docker:
@@ -62,6 +84,13 @@ workflows:
     build_and_verify:
         jobs:
             - build
+            - publish:
+                  context: org-global
+                  filters:
+                      branches:
+                          only: master
+                  requires:
+                      - build
             - verify_formatting:
                   requires:
                       - build
