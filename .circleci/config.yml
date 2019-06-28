@@ -85,11 +85,12 @@ workflows:
         jobs:
             - build
             - publish:
+                  context: org-global
                   requires:
                       - build
-                  # filters:
-                  #    branches:
-                  #        only: master
+                      # filters:
+                      #    branches:
+                      #        only: master
             - verify_formatting:
                   requires:
                       - build
