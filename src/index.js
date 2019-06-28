@@ -19,7 +19,7 @@ export const launch40Phaser = (setting = defaultGameSettings) => {
         physics: {
             default: "arcade",
             arcade: {
-                debug: setting.debug,
+                debug: defaultGameSettings.debug,
                 gravity: { y: options.gravity },
             },
         },

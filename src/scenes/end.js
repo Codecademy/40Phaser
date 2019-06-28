@@ -7,13 +7,11 @@ export default class EndScene extends Phaser.Scene {
 
     preload() {}
 
-    create() {
+    create(data) {
         elements.appEnd.style.visibility = "visible";
         elements.appEnd.style.display = "flex";
         elements.appEnd.style.marginTop = "10%";
-
-        // TODO: Update display score once gameState is implemented
-        // elements.endScoreDisplay.innerHTML = `Score: ${}`
+        elements.endScoreDisplay.innerHTML = `Score: ${data.score}`;
 
         elements.buttonGameReplay.onclick = () => {
             elements.appEnd.style.visibility = "invisible";
