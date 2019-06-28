@@ -1,7 +1,7 @@
 import options from "../options.js";
 
 let spacebar;
-let score = 0;
+let score;
 let scoreText;
 // if gamePlaying is true, then the game isn't paused
 let gamePlaying = true;
@@ -20,7 +20,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create(data) {
-        score = data.score ? data.score : 0;
+        score = data.score || 0;
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "run",
