@@ -11,13 +11,13 @@ export default class EndScene extends Phaser.Scene {
         elements.appEnd.style.visibility = "visible";
         elements.appEnd.style.display = "flex";
         elements.appEnd.style.marginTop = "10%";
-        elements.endScoreDisplay.innerHTML = `Score: ${Math.trunc(data.score)}`;
+        elements.endScoreDisplay.innerHTML = `Score: ${data.score}`;
 
         elements.buttonGameReplay.onclick = () => {
             elements.appEnd.style.visibility = "invisible";
             elements.appEnd.style.display = "none";
             this.scene.stop("EndScene");
-            this.scene.start("GameScene", { score: 0 });
+            this.scene.start("GameScene");
         };
     }
 }

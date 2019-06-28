@@ -19,8 +19,8 @@ export default class GameScene extends Phaser.Scene {
         });
     }
 
-    create(data) {
-        score = data.score || 0;
+    create() {
+        score = 0;
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "run",
@@ -125,7 +125,7 @@ export default class GameScene extends Phaser.Scene {
             }
             if (this.player.y > options.windowHeight) {
                 this.scene.stop("GameScene");
-                this.scene.start("EndScene", { score });
+                this.scene.start("EndScene", { score: Math.floor(score) });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
