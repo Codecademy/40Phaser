@@ -1,13 +1,9 @@
 # 40Phaser
 
-[![CircleCI](https://circleci.com/gh/Codecademy/40Phaser.svg?style=svg)](https://circleci.com/gh/Codecademy/40Phaser)
-
-<!--
-[![Circle CI](https://circleci.com/gh/Codecademy/40Phaser.svg?style=svg)](https://circleci.com/gh/Codecademy/40Phaser)
-[![NPM version](https://img.shields.io/npm/v/40Phaser.svg)](https://npmjs.org/package/40Phaser)
-[![Downloads](http://img.shields.io/npm/dm/40Phaser.svg)](https://npmjs.org/package/40Phaser)
-![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-14cc21.svg)
--->
+![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)
+[![Circle CI](https://img.shields.io/circleci/build/github/Codecademy/40Phaser.svg)](https://circleci.com/gh/Codecademy/40Phaser)
+[![NPM version](https://badge.fury.io/js/40phaser.svg)](https://badge.fury.io/js/40phaser)
+[![Powered by Phaser](https://img.shields.io/badge/powered%20by-phaser-blueviolet.svg)](https://phaser.io)
 
 Codecademy's new 404 page.
 WIP.
@@ -23,7 +19,7 @@ npm i 40phaser
 In a webpage that already has [Phaser](https://phaser.io) available under `window.Phaser`, import and call the `launch40Phaser` function to start the game:
 
 ```js
-import { launch40Phaser } from '40phaser';
+import { launch40Phaser } from "40phaser";
 
 window.onload = () => {
     launch40Phaser();
@@ -33,8 +29,8 @@ window.onload = () => {
 Alternately, if Phaser isn't available globally, you may pass it to the game as `phaser`:
 
 ```js
-import { launch40Phaser } from '40phaser';
-import phaser from 'phaser'
+import { launch40Phaser } from "40phaser";
+import phaser from "phaser";
 
 window.onload = () => {
     launch40Phaser({ phaser });
