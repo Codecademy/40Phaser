@@ -1,54 +1,54 @@
 {
-  "author": "Codecademy <support@codecademy.com>",
-  "bugs": {
-    "url": "https://github.com/Codecademy/40Phaser/issues"
-  },
-  "description": "Codecademy's new 404 page. WIP",
-  "homepage": "https://github.com/Codecademy/40Phaser#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "author": "Codecademy <support@codecademy.com>",
+    "bugs": {
+        "url": "https://github.com/Codecademy/40Phaser/issues"
+    },
+    "description": "Codecademy's new 404 page. WIP",
+    "homepage": "https://github.com/Codecademy/40Phaser#readme",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "keywords": [
+        "codecademy",
+        "phaser",
+        "learn to code",
+        "404"
+    ],
+    "license": "MIT",
+    "lint-staged": {
+        "**/*.{css,html,js}": [
+            "prettier --ignore-path .eslintignore --write",
+            "git add"
+        ]
+    },
+    "main": "./src/index.js",
+    "name": "40phaser",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Codecademy/40Phaser.git"
+    },
+    "scripts": {
+        "eslint": "eslint \"./src/*.js\" \"./src/**/*.js\" --report-unused-disable-directives",
+        "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\" \"./.circleci/config.yml\" \"./package.json\"",
+        "prettier:write": "npm run prettier -- --write",
+        "start": "http-server"
+    },
+    "version": "0.1.0",
+    "devDependencies": {
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-prettier": "^5.0.0",
+        "eslint-plugin-import": "^2.17.3",
+        "eslint-plugin-jsx-a11y": "^6.2.1",
+        "http-server": "^0.11.1",
+        "husky": "^2.4.1",
+        "lint-staged": "^8.2.0",
+        "prettier": "^1.18.2"
+    },
+    "dependencies": {
+        "phaser": "^3.17.0"
     }
-  },
-  "keywords": [
-    "codecademy",
-    "phaser",
-    "learn to code",
-    "404"
-  ],
-  "license": "MIT",
-  "lint-staged": {
-    "**/*.{css,html,js}": [
-      "prettier --ignore-path .eslintignore --write",
-      "git add"
-    ]
-  },
-  "main": "./src/index.js",
-  "name": "40phaser",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Codecademy/40Phaser.git"
-  },
-  "scripts": {
-    "eslint": "eslint \"./src/*.js\" \"./src/**/*.js\" --report-unused-disable-directives",
-    "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\"",
-    "prettier:write": "npm run prettier -- --write",
-    "start": "http-server"
-  },
-  "version": "0.1.0",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^5.0.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "http-server": "^0.11.1",
-    "husky": "^2.4.1",
-    "lint-staged": "^8.2.0",
-    "prettier": "^1.18.2"
-  },
-  "dependencies": {
-    "phaser": "^3.17.0"
-  }
 }
