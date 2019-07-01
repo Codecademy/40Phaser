@@ -47,7 +47,7 @@ export default class EndScene extends Phaser.Scene {
         });
 
         buildYourOwn.on("pointerup", () => {
-            window.location.href("https://www.codecademy.com/learn/learn-phaser");
+            window.location.href = "https://www.codecademy.com/learn/learn-phaser";
         });
 
         this.add.text(options.windowWidth / 2 - 40, options.windowHeight / 3 + 15, "Play Again", {
@@ -58,7 +58,7 @@ export default class EndScene extends Phaser.Scene {
 
         this.add.text(
             options.windowWidth / 2 - 55,
-            options.windowHeight / 2 - 40,
+            options.windowHeight / 2 - 30,
             "Build your own",
             {
                 fontFamily: "sans-serif",
