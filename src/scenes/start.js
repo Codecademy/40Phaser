@@ -3,6 +3,8 @@ import options from "../options.js";
 export default class StartScene extends Phaser.Scene {
     constructor() {
         super({ key: "StartScene" });
+        this.gameStart = {};
+        this.buildYourOwn = {};
     }
 
     preload() {
@@ -22,8 +24,26 @@ export default class StartScene extends Phaser.Scene {
         this.start_player.body.setAllowGravity(false);
         this.start_platform.body.setAllowGravity(false);
 
+        this.createDOMElements();
+
+        this.gameStart.setInteractive();
+        this.buildYourOwn.setInteractive();
+
+        this.gameStart.on("pointerup", () => {
+            this.scene.start("GameScene");
+            this.scene.stop("StartScene");
+        });
+
+        this.buildYourOwn.on("pointerup", () => {
+            window.location.href = "https://www.codecademy.com/learn/learn-phaser";
+        });
+    }
+
+    createDOMElements() {
+        // create the 404 image
         this.add.image(options.windowWidth / 2, 100, "404image");
 
+        // add heading
         this.add.text(65, options.windowHeight / 2 - 40, "Oh no! Looks like you're lost.", {
             fontFamily: "sans-serif",
             fontSize: "48px",
@@ -32,6 +52,7 @@ export default class StartScene extends Phaser.Scene {
             align: "center",
         });
 
+        // add subheading
         this.add.text(
             140,
             options.windowHeight / 2 + 50,
@@ -44,7 +65,8 @@ export default class StartScene extends Phaser.Scene {
             },
         );
 
-        const gameStart = this.add.rectangle(
+        // add "Play the Game" button
+        this.gameStart = this.add.rectangle(
             options.windowWidth / 2,
             options.windowHeight / 2 + 120,
             220,
@@ -52,7 +74,8 @@ export default class StartScene extends Phaser.Scene {
             0x6400e4,
         );
 
-        const buildYourOwn = this.add.rectangle(
+        // add "Build your own" button
+        this.buildYourOwn = this.add.rectangle(
             options.windowWidth / 2,
             options.windowHeight / 2 + 170,
             220,
@@ -60,6 +83,7 @@ export default class StartScene extends Phaser.Scene {
             0xf9f9f9,
         );
 
+        // add "Play the Game" text to button
         this.add.text(
             options.windowWidth / 2 - 60,
             options.windowHeight / 2 + 110,
@@ -72,6 +96,7 @@ export default class StartScene extends Phaser.Scene {
             },
         );
 
+        // add "Build your own" text to button
         this.add.text(
             options.windowWidth / 2 - 55,
             options.windowHeight / 2 + 160,
@@ -82,17 +107,5 @@ export default class StartScene extends Phaser.Scene {
                 fill: "#6400e4",
             },
         );
-
-        gameStart.setInteractive();
-        buildYourOwn.setInteractive();
-
-        gameStart.on("pointerup", () => {
-            this.scene.start("GameScene");
-            this.scene.stop("StartScene");
-        });
-
-        buildYourOwn.on("pointerup", () => {
-            window.location.href = "https://www.codecademy.com/learn/learn-phaser";
-        });
     }
 }

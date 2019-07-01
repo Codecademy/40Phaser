@@ -74,7 +74,7 @@ export default class GameScene extends Phaser.Scene {
         const togglePause = this.add.rectangle(options.windowWidth, 25, 150, 30, 0x6400e4);
         togglePause.setInteractive();
 
-        togglePause.text = this.add.text(options.windowWidth - 65, 13, "pause", {
+        togglePause.text = this.add.text(options.windowWidth - 64, 14, "pause", {
             fontSize: "17px",
             fill: "#fff",
         });
