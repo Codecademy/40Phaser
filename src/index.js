@@ -15,7 +15,7 @@ export const launch40Phaser = (setting = defaultGameSettings) => {
         type: Phaser.AUTO,
         width: options.windowWidth,
         height: options.windowHeight,
-        backgroundColor: "#f9f9f9",
+        backgroundColor: options.backgroundColor,
         physics: {
             default: "arcade",
             arcade: {
