@@ -10,5 +10,8 @@ export default {
     whiteText: "#fff",
     blackText: "#000",
     backgroundColor: 0xf9f9f9,
+    smallFontSize: "17px",
+    mediumfFontSize: "24px",
+    largeFontSize: "48px",
     fontFamily: "sans-serif",
 };

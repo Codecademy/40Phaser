@@ -14,7 +14,7 @@ export default class EndScene extends Phaser.Scene {
     createDOMElements(score) {
         this.add.text(options.windowWidth / 2 - 110, 60, `Score: ${score}`, {
             fontFamily: options.fontFamily,
-            fontSize: "48px",
+            fontSize: options.largeFontSize,
             fontStyle: "bold",
             color: options.blackText,
             align: "center",
@@ -22,7 +22,7 @@ export default class EndScene extends Phaser.Scene {
 
         this.add.text(options.windowWidth / 2 - 35, options.windowHeight / 4, "So Close!", {
             fontFamily: options.fontFamily,
-            fontSize: "17px",
+            fontSize: options.smallFontSize,
             fill: options.blackText,
         });
 
@@ -56,7 +56,7 @@ export default class EndScene extends Phaser.Scene {
 
         this.add.text(options.windowWidth / 2 - 40, options.windowHeight / 3 + 15, "Play Again", {
             fontFamily: options.fontFamily,
-            fontSize: "17px",
+            fontSize: options.smallFontSize,
             fill: options.whiteText,
         });
 
@@ -66,7 +66,7 @@ export default class EndScene extends Phaser.Scene {
             "Build your own",
             {
                 fontFamily: options.fontFamily,
-                fontSize: "17px",
+                fontSize: options.smallFontSize,
                 fill: options.purpleText,
             },
         );

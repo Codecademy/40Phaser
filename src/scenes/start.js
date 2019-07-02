@@ -30,7 +30,7 @@ export default class StartScene extends Phaser.Scene {
 
         this.add.text(65, options.windowHeight / 2 - 40, "Oh no! Looks like you're lost.", {
             fontFamily: options.fontFamily,
-            fontSize: "48px",
+            fontSize: options.largeFontSize,
             fontStyle: "bold",
             color: options.blackText,
             align: "center",
@@ -42,7 +42,7 @@ export default class StartScene extends Phaser.Scene {
             "Luckily you're not alone. Help Codey return home and get back to coding.",
             {
                 fontFamily: options.fontFamily,
-                fontSize: "16px",
+                fontSize: options.smallFontSize,
                 color: options.blackText,
                 align: "center",
             },
@@ -82,8 +82,7 @@ export default class StartScene extends Phaser.Scene {
             "Play the Game",
             {
                 fontFamily: options.fontFamily,
-                fontSize: "17px",
-                fontStyle: "bold",
+                fontSize: options.smallFontSize,
                 fill: options.whiteText,
             },
         );
@@ -94,7 +93,7 @@ export default class StartScene extends Phaser.Scene {
             "Build your own",
             {
                 fontFamily: options.fontFamily,
-                fontSize: "17px",
+                fontSize: options.smallFontSize,
                 fill: options.purpleText,
             },
         );
