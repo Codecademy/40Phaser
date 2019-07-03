@@ -67,7 +67,7 @@ export default class GameScene extends Phaser.Scene {
         spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         scoreText = this.add.text(16, 16, "Score: 0", {
             fontFamily: options.fontFamily,
-            fontSize: options.mediumfFontSize,
+            fontSize: options.mediumFontSize,
             fill: options.blackText,
         });
 

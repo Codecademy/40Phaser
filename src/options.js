@@ -11,7 +11,7 @@ export default {
     blackText: "#000",
     backgroundColor: 0xf9f9f9,
     smallFontSize: "17px",
-    mediumfFontSize: "24px",
+    mediumFontSize: "24px",
     largeFontSize: "48px",
     fontFamily: "sans-serif",
 };
