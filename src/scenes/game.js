@@ -66,17 +66,19 @@ export default class GameScene extends Phaser.Scene {
         // add the space bar input
         spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         scoreText = this.add.text(16, 16, "Score: 0", {
-            fontSize: "24px",
-            fill: "#000",
+            fontFamily: options.fontFamily,
+            fontSize: options.mediumFontSize,
+            fill: options.blackText,
         });
 
         // add pause button with text
-        const togglePause = this.add.rectangle(options.windowWidth, 25, 150, 30, 0x6400e4);
+        const togglePause = this.add.rectangle(options.windowWidth, 25, 150, 30, options.purpleBox);
         togglePause.setInteractive();
 
-        togglePause.text = this.add.text(options.windowWidth - 65, 13, "pause", {
-            fontSize: "17px",
-            fill: "#fff",
+        togglePause.text = this.add.text(options.windowWidth - 60, 14, "pause", {
+            fontFamily: options.fontFamily,
+            fontSize: options.smallFontSize,
+            fill: options.whiteText,
         });
 
         togglePause.on("pointerup", () => {
