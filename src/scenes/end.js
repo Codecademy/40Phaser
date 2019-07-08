@@ -8,16 +8,22 @@ export default class EndScene extends Phaser.Scene {
     preload() {}
 
     create(data) {
-        this.createDOMElements(data.score);
+        this.createDOMElements(data);
     }
 
-    createDOMElements(score) {
-        this.add.text(options.windowWidth / 2 - 110, 60, `Score: ${score}`, {
+    createDOMElements({ score, highscore }) {
+        this.add.text(options.windowWidth / 2 - 110, 50, `Score: ${score}`, {
             fontFamily: options.fontFamily,
             fontSize: options.largeFontSize,
             fontStyle: "bold",
             color: options.blackText,
             align: "center",
+        });
+
+        this.add.text(options.windowWidth / 2 - 80, 110, `Highscore: ${highscore}`, {
+            fontFamily: options.fontFamily,
+            fontSize: options.mediumFontSize,
+            fill: options.blackText,
         });
 
         this.add.text(options.windowWidth / 2 - 35, options.windowHeight / 4, "So Close!", {

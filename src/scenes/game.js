@@ -2,6 +2,7 @@ import options from "../options.js";
 
 let spacebar;
 let score;
+let highscore;
 let scoreText;
 // if gamePlaying is true, then the game isn't paused
 let gamePlaying = true;
@@ -21,6 +22,8 @@ export default class GameScene extends Phaser.Scene {
 
     create() {
         score = 0;
+        highscore = parseInt(localStorage.getItem("highscore"), 10) || 0;
+
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "run",
@@ -127,7 +130,14 @@ export default class GameScene extends Phaser.Scene {
             }
             if (this.player.y > options.windowHeight) {
                 this.scene.stop("GameScene");
-                this.scene.start("EndScene", { score: Math.floor(score) });
+
+                highscore = score > highscore ? score : highscore;
+                localStorage.setItem("highscore", Math.floor(highscore));
+
+                this.scene.start("EndScene", {
+                    score: Math.floor(score),
+                    highscore: Math.floor(highscore),
+                });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
