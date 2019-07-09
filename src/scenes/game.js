@@ -1,4 +1,6 @@
 import options from "../options.js";
+import platformImg from "../assets/platform-test.png";
+import codeyImg from "../assets/codey_sprite.png";
 
 let spacebar;
 let score;
@@ -13,8 +15,8 @@ export default class GameScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("platform", "assets/platform-test.png");
-        this.load.spritesheet("codey", "assets/codey_sprite.png", {
+        this.load.image("platform", platformImg);
+        this.load.spritesheet("codey", codeyImg, {
             frameWidth: 72,
             frameHeight: 72,
         });

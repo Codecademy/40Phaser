@@ -1,4 +1,4 @@
-import options from "./options.js";
+import defaultOptions from "./options.js";
 import EndScene from "./scenes/end.js";
 import GameScene from "./scenes/game.js";
 import StartScene from "./scenes/start.js";
@@ -8,10 +8,14 @@ const defaultGameSettings = {
     phaser: window.Phaser,
 };
 
-export const launch40Phaser = (setting = defaultGameSettings) => {
-    setting = { ...defaultGameSettings, ...setting };
+export const launch40Phaser = settings => {
+    settings = { ...defaultGameSettings, ...settings };
+    const options = {
+        ...defaultOptions,
+        ...settings.phaserOptions,
+    };
 
-    return new setting.phaser.Game({
+    return new settings.phaser.Game({
         type: Phaser.AUTO,
         width: options.windowWidth,
         height: options.windowHeight,
@@ -24,6 +28,7 @@ export const launch40Phaser = (setting = defaultGameSettings) => {
             },
         },
         scene: [StartScene, GameScene, EndScene],
+        parent: options.parent,
     });
 };
 

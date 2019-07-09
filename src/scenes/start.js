@@ -1,4 +1,7 @@
 import options from "../options.js";
+import platformImg from "../assets/platform-test.png";
+import error404Img from "../assets/404.svg";
+import codeyImg from "../assets/codey_sprite.png";
 
 export default class StartScene extends Phaser.Scene {
     constructor() {
@@ -6,9 +9,9 @@ export default class StartScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("platform", "assets/platform-test.png");
-        this.load.image("404image", "assets/404.svg");
-        this.load.spritesheet("codey", "assets/codey_sprite.png", {
+        this.load.image("platform", platformImg);
+        this.load.image("404image", error404Img);
+        this.load.spritesheet("codey", codeyImg, {
             frameWidth: 72,
             frameHeight: 72,
         });
