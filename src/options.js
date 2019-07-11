@@ -10,7 +10,7 @@ export default {
     purpleText: "#6400e4",
     whiteText: "#fff",
     blackText: "#000",
-    backgroundColor: 0xf9f9f9,
+    backgroundColor: 0xffffff,
     smallFontSize: "17px",
     mediumFontSize: "24px",
     largeFontSize: "48px",

@@ -64,7 +64,7 @@ export default class StartScene extends Phaser.Scene {
             options.windowHeight / 2 + 170,
             220,
             40,
-            0xf9f9f9,
+            options.backgroundColor,
         );
 
         gameStart.setInteractive();
