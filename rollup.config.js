@@ -11,11 +11,12 @@ export default {
         },
     ],
     plugins: [
-        serve({
-            contentBase: "",
-            // Path to fallback page
-            historyApiFallback: "/src/index.html",
-        }),
+        process.env.ROLLUP_SERVE &&
+            serve({
+                contentBase: "",
+                // Path to fallback page
+                historyApiFallback: "/public/index.html",
+            }),
         nodeResolve(),
         url({
             limit: 0, // copy all files
