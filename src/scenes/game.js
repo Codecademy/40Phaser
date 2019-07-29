@@ -6,8 +6,7 @@ let spacebar;
 let score;
 let highscore;
 let scoreText;
-// if gamePlaying is true, then the game isn't paused
-let gamePlaying = true;
+let isPaused = false;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -87,18 +86,18 @@ export default class GameScene extends Phaser.Scene {
         });
 
         togglePause.on("pointerup", () => {
-            if (gamePlaying) {
-                togglePause.text.setText("resume");
-                togglePause.text.x -= 3;
-                this.physics.pause();
-                this.anims.pauseAll();
-            } else {
+            if (!isPaused) {
                 togglePause.text.setText("pause");
                 togglePause.text.x += 3;
                 this.physics.resume();
                 this.anims.resumeAll();
+            } else {
+                togglePause.text.setText("resume");
+                togglePause.text.x -= 3;
+                this.physics.pause();
+                this.anims.pauseAll();
             }
-            gamePlaying = !gamePlaying;
+            isPaused = !isPaused;
         });
     }
 
@@ -117,8 +116,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update() {
-        // game mechanics occur only if gamePlaying is true
-        if (gamePlaying) {
+        if (!isPaused) {
             score += 0.2;
             scoreText.setText(`Score: ${Math.floor(score)}`);
 
