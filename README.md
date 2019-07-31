@@ -16,6 +16,8 @@ Install the `40phaser` package on npm:
 npm i 40phaser
 ```
 
+Because this package requires image assets, you'll need to use a bundler like [webpack](https://webpack.js.org) or [rollup](https://rollupjs.org/) to compile the script you use on your site. An example of this setup using rollup is included in this repo and used for local development.
+
 In a webpage that already has [Phaser](https://phaser.io) available under `window.Phaser`, import and call the `launch40Phaser` function to start the game:
 
 ```js
