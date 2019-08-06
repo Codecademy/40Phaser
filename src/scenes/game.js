@@ -86,7 +86,7 @@ export default class GameScene extends Phaser.Scene {
         });
 
         togglePause.on("pointerup", () => {
-            if (!isPaused) {
+            if (isPaused) {
                 togglePause.text.setText("pause");
                 togglePause.text.x += 3;
                 this.physics.resume();
