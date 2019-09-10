@@ -33,7 +33,7 @@
         "eslint": "eslint \"./src/*.js\" \"./src/**/*.js\" --report-unused-disable-directives",
         "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\" \"./.circleci/config.yml\" \"./package.json\"",
         "prettier:write": "npm run prettier -- --write",
-        "start": "ROLLUP_SERVE=true rollup --config --watch",
+        "start": "rollup --config --watch",
         "build": "rollup --config"
     },
     "version": "0.1.5",

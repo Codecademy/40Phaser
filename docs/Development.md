@@ -8,11 +8,13 @@ cd 40Phaser
 npm i
 ```
 
+## Local Testing
+
 Start a local http server using the provided VS Code [npm start task](https://code.visualstudio.com/docs/editor/tasks) or in your terminal:
 
 ```shell
 npm run start
 ```
 
-Open [`127.0.0.1:10001/src/index.html`](http://127.0.0.1:10001/src/index.html) to start playing!
+Open [`http://localhost:10001`](http://localhost:10001) to start playing!
 Any changes you make to source files will be visible when you refresh the browser page.

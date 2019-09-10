@@ -5,8 +5,7 @@
 [![NPM version](https://badge.fury.io/js/40phaser.svg)](https://badge.fury.io/js/40phaser)
 [![Powered by Phaser](https://img.shields.io/badge/powered%20by-phaser-blueviolet.svg)](https://phaser.io)
 
-Codecademy's new 404 page.
-WIP.
+Codecademy's fancy schmancy 404 page.
 
 ## Usage
 
