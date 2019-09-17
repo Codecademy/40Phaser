@@ -36,7 +36,7 @@ export default class GameScene extends Phaser.Scene {
         // create the codey running animation from sprite sheet
         this.anims.create({
             key: "jump",
-            frames: this.anims.generateFrameNumbers("codey", { start: 5, end: 5 }),
+            frames: this.anims.generateFrameNumbers("codey", { start: 3, end: 5 }),
             frameRate: 10,
             repeat: -1,
         });
@@ -69,6 +69,9 @@ export default class GameScene extends Phaser.Scene {
 
         // add the space bar input
         spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // add the tap/click input
+        this.input.on("pointerdown", this.jump, this);
+
         scoreText = this.add.text(16, 16, "Score: 0", {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
