@@ -16,5 +16,11 @@ Start a local http server using the provided VS Code [npm start task](https://co
 npm run start
 ```
 
-Open [`http://localhost:10001`](http://localhost:10001) to start playing!
+And in another terminal, start Rollup to compile your JavaScript files as you edit them:
+
+```shell
+npm run watch
+```
+
+Open [`http://127.0.0.1:8080/demo`](http://127.0.0.1:8080/demo) to start playing!
 Any changes you make to source files will be visible when you refresh the browser page.
