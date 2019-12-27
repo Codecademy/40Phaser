@@ -33,8 +33,9 @@
         "eslint": "eslint \"./src/*.js\" \"./src/**/*.js\" --report-unused-disable-directives",
         "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\" \"./.circleci/config.yml\" \"./package.json\"",
         "prettier:write": "npm run prettier -- --write",
-        "start": "rollup --config --watch",
-        "build": "rollup --config"
+        "build": "rollup --config",
+        "start": "http-server",
+        "watch": "rollup --config --watch"
     },
     "version": "0.1.5",
     "devDependencies": {
@@ -44,6 +45,7 @@
         "eslint-config-prettier": "^5.0.0",
         "eslint-plugin-import": "^2.17.3",
         "eslint-plugin-jsx-a11y": "^6.2.1",
+        "http-server": "^0.12.0",
         "husky": "^2.4.1",
         "lint-staged": "^8.2.0",
         "phaser": "^3.18.1",
