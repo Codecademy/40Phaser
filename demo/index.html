@@ -10,16 +10,16 @@
 minimal-ui"
         />
 
-        <link href="/src/styles.css" rel="stylesheet" type="text/css" />
+        <link href="./styles.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
         <div id="container"></div>
         <script type="module">
-            import "/node_modules/phaser/dist/phaser.min.js";
+            import "../node_modules/phaser/dist/phaser.min.js";
         </script>
         <script type="module">
-            import launch40Phaser from "/dist/index.js";
+            import launch40Phaser from "../dist/index.js";
 
             window.addEventListener("load", () => {
                 launch40Phaser({
