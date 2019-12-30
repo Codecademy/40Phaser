@@ -18,31 +18,53 @@ export default class StartScene extends Phaser.Scene {
     }
 
     create() {
-        this.start_player = this.physics.add.sprite(100, options.windowHeight - 100, "codey");
+        this.createTextElements();
 
-        this.start_platform = this.physics.add.sprite(100, options.windowHeight - 50, "platform");
+        this.start_player = this.physics.add.sprite(100, this.game.config.height - 100, "codey");
+
+        this.start_platform = this.physics.add.sprite(
+            100,
+            this.game.config.height - 50,
+            "platform",
+        );
 
         this.start_player.body.setAllowGravity(false);
         this.start_platform.body.setAllowGravity(false);
-
-        this.createDOMElements();
     }
 
-    createDOMElements() {
-        this.add.image(options.windowWidth / 2, 100, "404image");
-
-        this.add.text(65, options.windowHeight / 2 - 40, "Oh no! Looks like you're lost.", {
-            fontFamily: options.fontFamily,
-            fontSize: options.largeFontSize,
-            fontStyle: "bold",
-            color: options.blackText,
-            align: "center",
-        });
+    createTextElements() {
+        this.add.image(this.game.config.width / 2, 100, "404image");
 
         this.add.text(
-            140,
-            options.windowHeight / 2 + 50,
-            "Luckily you're not alone. Help Codey return home and get back to coding.",
+            this.game.config.width / 2 - 70,
+            this.game.config.height / 2 - 100,
+            "Oh no!",
+            {
+                fontFamily: options.fontFamily,
+                fontSize: options.extraLargeFontSize,
+                fontStyle: "bold",
+                color: options.blackText,
+                align: "center",
+            },
+        );
+
+        this.add.text(
+            this.game.config.width / 2 - 160,
+            this.game.config.height / 2 - 48,
+            "Looks like you're lost.",
+            {
+                fontFamily: options.fontFamily,
+                fontSize: options.largeFontSize,
+                fontStyle: "bold",
+                color: options.blackText,
+                align: "center",
+            },
+        );
+
+        this.add.text(
+            this.game.config.width / 2 - 170,
+            this.game.config.height / 2 + 25,
+            "Luckily you're not alone.\nHelp Codey return home and get back to coding.",
             {
                 fontFamily: options.fontFamily,
                 fontSize: options.smallFontSize,
@@ -52,16 +74,16 @@ export default class StartScene extends Phaser.Scene {
         );
 
         const gameStart = this.add.rectangle(
-            options.windowWidth / 2,
-            options.windowHeight / 2 + 120,
+            this.game.config.width / 2,
+            this.game.config.height / 2 + 120,
             220,
             40,
             0x6400e4,
         );
 
         const buildYourOwn = this.add.rectangle(
-            options.windowWidth / 2,
-            options.windowHeight / 2 + 170,
+            this.game.config.width / 2,
+            this.game.config.height / 2 + 170,
             220,
             40,
             options.backgroundColor,
@@ -80,8 +102,8 @@ export default class StartScene extends Phaser.Scene {
         });
 
         this.add.text(
-            options.windowWidth / 2 - 60,
-            options.windowHeight / 2 + 110,
+            this.game.config.width / 2 - 60,
+            this.game.config.height / 2 + 110,
             "Play the Game",
             {
                 fontFamily: options.fontFamily,
@@ -91,8 +113,8 @@ export default class StartScene extends Phaser.Scene {
         );
 
         this.add.text(
-            options.windowWidth / 2 - 55,
-            options.windowHeight / 2 + 160,
+            this.game.config.width / 2 - 55,
+            this.game.config.height / 2 + 160,
             "Build your own",
             {
                 fontFamily: options.fontFamily,

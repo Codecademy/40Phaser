@@ -50,7 +50,7 @@ export default class GameScene extends Phaser.Scene {
             this.addPlatform(110 * i);
         }
 
-        this.player = this.physics.add.sprite(100, options.windowHeight - 100, "codey");
+        this.player = this.physics.add.sprite(100, this.game.config.height - 100, "codey");
 
         this.player.body.checkCollision.up = false;
         this.player.body.checkCollision.left = false;
@@ -79,10 +79,16 @@ export default class GameScene extends Phaser.Scene {
         });
 
         // add pause button with text
-        const togglePause = this.add.rectangle(options.windowWidth, 25, 150, 30, options.purpleBox);
+        const togglePause = this.add.rectangle(
+            this.game.config.width,
+            25,
+            150,
+            30,
+            options.purpleBox,
+        );
         togglePause.setInteractive();
 
-        togglePause.text = this.add.text(options.windowWidth - 60, 14, "pause", {
+        togglePause.text = this.add.text(this.game.config.width - 60, 14, "pause", {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
@@ -104,8 +110,8 @@ export default class GameScene extends Phaser.Scene {
         });
     }
 
-    addPlatform(platformX = options.windowWidth) {
-        const platformY = options.windowHeight - 50;
+    addPlatform(platformX = this.game.config.width) {
+        const platformY = this.game.config.height - 50;
         const platform = this.physics.add.sprite(platformX, platformY, "platform");
 
         this.platforms.add(platform);
@@ -131,7 +137,7 @@ export default class GameScene extends Phaser.Scene {
             } else {
                 this.player.anims.play("run", true);
             }
-            if (this.player.y > options.windowHeight) {
+            if (this.player.y > this.game.config.height) {
                 this.scene.stop("GameScene");
 
                 highscore = score > highscore ? score : highscore;
@@ -149,7 +155,7 @@ export default class GameScene extends Phaser.Scene {
     updatePlatforms(platform) {
         if (platform.x < -platform.width) {
             const randDiff = Math.floor(Math.random() * 250);
-            platform.x = options.windowWidth + randDiff;
+            platform.x = this.game.config.width + randDiff;
         } else {
             options.platformSpeedIncrement = score / 500;
             platform.x -= options.platformSpeed * (1 + options.platformSpeedIncrement);
