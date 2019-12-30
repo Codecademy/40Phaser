@@ -26,6 +26,8 @@ minimal-ui"
                     debug: true,
                     phaserOptions: {
                         parent: "container",
+                        windowHeight: Math.min(window.innerHeight, 600),
+                        windowWidth: Math.min(window.innerWidth, 800),
                     },
                 });
             });
