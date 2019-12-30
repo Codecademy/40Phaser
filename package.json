@@ -34,7 +34,7 @@
         "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\" \"./.circleci/config.yml\" \"./package.json\"",
         "prettier:write": "npm run prettier -- --write",
         "build": "rollup --config",
-        "start": "http-server",
+        "start": "http-server -c-1",
         "watch": "rollup --config --watch"
     },
     "version": "0.1.5",
