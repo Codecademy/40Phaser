@@ -7,6 +7,7 @@ let score;
 let highscore;
 let scoreText;
 let isPaused = false;
+let pauseButton;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -79,30 +80,30 @@ export default class GameScene extends Phaser.Scene {
         });
 
         // add pause button with text
-        const togglePause = this.add.rectangle(
-            this.game.config.width,
+        pauseButton = this.add.rectangle(
+            this.game.config.width - 70,
             25,
-            150,
+            100,
             30,
             options.purpleBox,
         );
-        togglePause.setInteractive();
+        pauseButton.setInteractive();
 
-        togglePause.text = this.add.text(this.game.config.width - 60, 14, "pause", {
+        pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
         });
 
-        togglePause.on("pointerup", () => {
+        pauseButton.on("pointerup", () => {
             if (isPaused) {
-                togglePause.text.setText("pause");
-                togglePause.text.x += 3;
+                pauseButton.text.setText("(P)ause");
+                pauseButton.text.x += 6;
                 this.physics.resume();
                 this.anims.resumeAll();
             } else {
-                togglePause.text.setText("resume");
-                togglePause.text.x -= 3;
+                pauseButton.text.setText("un(P)ause");
+                pauseButton.text.x -= 6;
                 this.physics.pause();
                 this.anims.pauseAll();
             }
