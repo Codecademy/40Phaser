@@ -100,18 +100,7 @@ export default class GameScene extends Phaser.Scene {
         });
 
         pauseButton.on("pointerup", () => {
-            if (isPaused) {
-                pauseButton.text.setText("(P)ause");
-                pauseButton.text.x += 6;
-                this.physics.resume();
-                this.anims.resumeAll();
-            } else {
-                pauseButton.text.setText("un(P)ause");
-                pauseButton.text.x -= 6;
-                this.physics.pause();
-                this.anims.pauseAll();
-            }
-            isPaused = !isPaused;
+            this.togglePause();
         });
     }
 
@@ -156,19 +145,23 @@ export default class GameScene extends Phaser.Scene {
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
         if (Phaser.Input.Keyboard.JustDown(pKey)) {
-            if (isPaused) {
-                pauseButton.text.setText("(P)ause");
-                pauseButton.text.x += 6;
-                this.physics.resume();
-                this.anims.resumeAll();
-            } else {
-                pauseButton.text.setText("un(P)ause");
-                pauseButton.text.x -= 6;
-                this.physics.pause();
-                this.anims.pauseAll();
-            }
-            isPaused = !isPaused;
+            this.togglePause();
         }
+    }
+
+    togglePause() {
+        if (isPaused) {
+            pauseButton.text.setText("(P)ause");
+            pauseButton.text.x += 6;
+            this.physics.resume();
+            this.anims.resumeAll();
+        } else {
+            pauseButton.text.setText("un(P)ause");
+            pauseButton.text.x -= 6;
+            this.physics.pause();
+            this.anims.pauseAll();
+        }
+        isPaused = !isPaused;
     }
 
     updatePlatforms(platform) {
