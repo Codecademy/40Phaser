@@ -8,6 +8,7 @@ let highscore;
 let scoreText;
 let isPaused = false;
 let pauseButton;
+let pKey;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -78,6 +79,9 @@ export default class GameScene extends Phaser.Scene {
             fontSize: options.mediumFontSize,
             fill: options.blackText,
         });
+
+        // create p key input
+        pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
         // add pause button with text
         pauseButton = this.add.rectangle(
@@ -150,6 +154,20 @@ export default class GameScene extends Phaser.Scene {
                 });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
+        }
+        if (Phaser.Input.Keyboard.JustDown(pKey)) {
+            if (isPaused) {
+                pauseButton.text.setText("(P)ause");
+                pauseButton.text.x += 6;
+                this.physics.resume();
+                this.anims.resumeAll();
+            } else {
+                pauseButton.text.setText("un(P)ause");
+                pauseButton.text.x -= 6;
+                this.physics.pause();
+                this.anims.pauseAll();
+            }
+            isPaused = !isPaused;
         }
     }
 
