@@ -7,6 +7,8 @@ let score;
 let highscore;
 let scoreText;
 let isPaused = false;
+let pauseButton;
+let pKey;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -78,35 +80,27 @@ export default class GameScene extends Phaser.Scene {
             fill: options.blackText,
         });
 
+        // create p key input
+        pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
         // add pause button with text
-        const togglePause = this.add.rectangle(
-            this.game.config.width,
+        pauseButton = this.add.rectangle(
+            this.game.config.width - 70,
             25,
-            150,
+            100,
             30,
             options.purpleBox,
         );
-        togglePause.setInteractive();
+        pauseButton.setInteractive();
 
-        togglePause.text = this.add.text(this.game.config.width - 60, 14, "pause", {
+        pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
         });
 
-        togglePause.on("pointerup", () => {
-            if (isPaused) {
-                togglePause.text.setText("pause");
-                togglePause.text.x += 3;
-                this.physics.resume();
-                this.anims.resumeAll();
-            } else {
-                togglePause.text.setText("resume");
-                togglePause.text.x -= 3;
-                this.physics.pause();
-                this.anims.pauseAll();
-            }
-            isPaused = !isPaused;
+        pauseButton.on("pointerup", () => {
+            this.togglePause();
         });
     }
 
@@ -150,6 +144,24 @@ export default class GameScene extends Phaser.Scene {
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
+        if (Phaser.Input.Keyboard.JustDown(pKey)) {
+            this.togglePause();
+        }
+    }
+
+    togglePause() {
+        if (isPaused) {
+            pauseButton.text.setText("(P)ause");
+            pauseButton.text.x += 6;
+            this.physics.resume();
+            this.anims.resumeAll();
+        } else {
+            pauseButton.text.setText("un(P)ause");
+            pauseButton.text.x -= 6;
+            this.physics.pause();
+            this.anims.pauseAll();
+        }
+        isPaused = !isPaused;
     }
 
     updatePlatforms(platform) {
