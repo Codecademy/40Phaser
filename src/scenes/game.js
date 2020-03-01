@@ -3,8 +3,6 @@ import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 
 let spacebar;
-let score;
-let highscore;
 let scoreText;
 let isPaused = false;
 let pauseButton;
@@ -13,6 +11,10 @@ let pKey;
 export default class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: "GameScene" });
+        this.scores = {
+            currScore: 0,
+            highScore: parseInt(localStorage.getItem("highscore"), 10) || 0,
+        };
     }
 
     preload() {
@@ -24,8 +26,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
-        score = 0;
-        highscore = parseInt(localStorage.getItem("highscore"), 10) || 0;
+        debugger;
 
         // create the codey running animation from sprite sheet
         this.anims.create({
@@ -74,7 +75,7 @@ export default class GameScene extends Phaser.Scene {
         // add the tap/click input
         this.input.on("pointerdown", this.jump, this);
 
-        scoreText = this.add.text(16, 16, "Score: 0", {
+        scoreText = this.add.text(16, 16, "this.scores.currScore: 0", {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
@@ -120,8 +121,8 @@ export default class GameScene extends Phaser.Scene {
 
     update() {
         if (!isPaused) {
-            score += 0.2;
-            scoreText.setText(`Score: ${Math.floor(score)}`);
+            this.scores.currScore += 0.2;
+            scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
 
             if (Phaser.Input.Keyboard.JustDown(spacebar)) {
                 this.jump();
@@ -134,12 +135,18 @@ export default class GameScene extends Phaser.Scene {
             if (this.player.y > this.game.config.height) {
                 this.scene.stop("GameScene");
 
-                highscore = score > highscore ? score : highscore;
-                localStorage.setItem("highscore", Math.floor(highscore));
+                highthis.scores.currScore =
+                    this.scores.currScore > highthis.scores.currScore
+                        ? this.scores.currScore
+                        : highthis.scores.currScore;
+                localStorage.setItem(
+                    "highthis.scores.currScore",
+                    Math.floor(highthis.scores.currScore),
+                );
 
                 this.scene.start("EndScene", {
-                    score: Math.floor(score),
-                    highscore: Math.floor(highscore),
+                    score: Math.floor(this.scores.currScore),
+                    score: Math.floor(highthis.scores.currScore),
                 });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
@@ -169,7 +176,7 @@ export default class GameScene extends Phaser.Scene {
             const randDiff = Math.floor(Math.random() * 250);
             platform.x = this.game.config.width + randDiff;
         } else {
-            options.platformSpeedIncrement = score / 500;
+            options.platformSpeedIncrement = this.scores.currScore / 500;
             platform.x -= options.platformSpeed * (1 + options.platformSpeedIncrement);
         }
     }
