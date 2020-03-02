@@ -2,17 +2,10 @@ import options from "../options.js";
 import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 
-let spacebar;
-let score;
-let highscore;
-let scoreText;
-let isPaused = false;
-let pauseButton;
-let pKey;
-
 export default class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: "GameScene" });
+        this.isPaused = false;
     }
 
     preload() {
@@ -24,10 +17,17 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
-        score = 0;
-        highscore = parseInt(localStorage.getItem("highscore"), 10) || 0;
+        this.scores = {
+            currScore: 0,
+            highscore: parseInt(localStorage.getItem("highscore"), 10) || 0,
+        };
 
-        // create the codey running animation from sprite sheet
+        this.keys = {
+            spacebar: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
+            pKey: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P),
+        };
+
+        // Running animation
         this.anims.create({
             key: "run",
             frames: this.anims.generateFrameNumbers("codey", { start: 0, end: 3 }),
@@ -35,7 +35,7 @@ export default class GameScene extends Phaser.Scene {
             repeat: -1,
         });
 
-        // create the codey running animation from sprite sheet
+        // jumping animation
         this.anims.create({
             key: "jump",
             frames: this.anims.generateFrameNumbers("codey", { start: 3, end: 5 }),
@@ -69,37 +69,32 @@ export default class GameScene extends Phaser.Scene {
             }
         });
 
-        // add the space bar input
-        spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         // add the tap/click input
         this.input.on("pointerdown", this.jump, this);
 
-        scoreText = this.add.text(16, 16, "Score: 0", {
+        this.scoreText = this.add.text(16, 16, "Score: 0", {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
         });
 
-        // create p key input
-        pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-
         // add pause button with text
-        pauseButton = this.add.rectangle(
+        this.pauseButton = this.add.rectangle(
             this.game.config.width - 70,
             25,
             100,
             30,
             options.purpleBox,
         );
-        pauseButton.setInteractive();
+        this.pauseButton.setInteractive();
 
-        pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
+        this.pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
         });
 
-        pauseButton.on("pointerup", () => {
+        this.pauseButton.on("pointerup", () => {
             this.togglePause();
         });
     }
@@ -119,11 +114,11 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update() {
-        if (!isPaused) {
-            score += 0.2;
-            scoreText.setText(`Score: ${Math.floor(score)}`);
+        if (!this.isPaused) {
+            this.scores.currScore += 0.2;
+            this.scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
 
-            if (Phaser.Input.Keyboard.JustDown(spacebar)) {
+            if (Phaser.Input.Keyboard.JustDown(this.keys.spacebar)) {
                 this.jump();
             }
             if (!this.player.body.touching.down) {
@@ -134,34 +129,34 @@ export default class GameScene extends Phaser.Scene {
             if (this.player.y > this.game.config.height) {
                 this.scene.stop("GameScene");
 
-                highscore = score > highscore ? score : highscore;
-                localStorage.setItem("highscore", Math.floor(highscore));
+                this.scores.highscore = Math.max(this.scores.highscore, this.scores.currScore);
+                localStorage.setItem("highscore", Math.floor(this.scores.highscore));
 
                 this.scene.start("EndScene", {
-                    score: Math.floor(score),
-                    highscore: Math.floor(highscore),
+                    score: Math.floor(this.scores.currScore),
+                    highscore: Math.floor(this.scores.highscore),
                 });
             }
             this.platforms.children.iterate(this.updatePlatforms, this);
         }
-        if (Phaser.Input.Keyboard.JustDown(pKey)) {
+        if (Phaser.Input.Keyboard.JustDown(this.keys.pKey)) {
             this.togglePause();
         }
     }
 
     togglePause() {
-        if (isPaused) {
-            pauseButton.text.setText("(P)ause");
-            pauseButton.text.x += 6;
+        if (this.isPaused) {
+            this.pauseButton.text.setText("(P)ause");
+            this.pauseButton.text.x += 6;
             this.physics.resume();
             this.anims.resumeAll();
         } else {
-            pauseButton.text.setText("un(P)ause");
-            pauseButton.text.x -= 6;
+            this.pauseButton.text.setText("un(P)ause");
+            this.pauseButton.text.x -= 6;
             this.physics.pause();
             this.anims.pauseAll();
         }
-        isPaused = !isPaused;
+        this.isPaused = !this.isPaused;
     }
 
     updatePlatforms(platform) {
@@ -169,7 +164,7 @@ export default class GameScene extends Phaser.Scene {
             const randDiff = Math.floor(Math.random() * 250);
             platform.x = this.game.config.width + randDiff;
         } else {
-            options.platformSpeedIncrement = score / 500;
+            options.platformSpeedIncrement = this.scores.currScore / 500;
             platform.x -= options.platformSpeed * (1 + options.platformSpeedIncrement);
         }
     }
