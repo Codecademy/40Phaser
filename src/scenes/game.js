@@ -2,7 +2,6 @@ import options from "../options.js";
 import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 
-let scoreText;
 let pauseButton;
 
 export default class GameScene extends Phaser.Scene {
@@ -76,7 +75,7 @@ export default class GameScene extends Phaser.Scene {
         // add the tap/click input
         this.input.on("pointerdown", this.jump, this);
 
-        scoreText = this.add.text(16, 16, "this.scores.currScore: 0", {
+        this.scoreText = this.add.text(16, 16, "this.scores.currScore: 0", {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
@@ -121,7 +120,7 @@ export default class GameScene extends Phaser.Scene {
         // debugger
         if (!this.isPaused) {
             this.scores.currScore += 0.2;
-            scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
+            this.scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
 
             if (Phaser.Input.Keyboard.JustDown(this.keys.spacebar)) {
                 this.jump();
