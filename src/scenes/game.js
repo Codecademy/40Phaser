@@ -2,8 +2,6 @@ import options from "../options.js";
 import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 
-let pauseButton;
-
 export default class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: "GameScene" });
@@ -82,22 +80,22 @@ export default class GameScene extends Phaser.Scene {
         });
 
         // add pause button with text
-        pauseButton = this.add.rectangle(
+        this.pauseButton = this.add.rectangle(
             this.game.config.width - 70,
             25,
             100,
             30,
             options.purpleBox,
         );
-        pauseButton.setInteractive();
+        this.pauseButton.setInteractive();
 
-        pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
+        this.pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
         });
 
-        pauseButton.on("pointerup", () => {
+        this.pauseButton.on("pointerup", () => {
             this.togglePause();
         });
     }
@@ -150,13 +148,13 @@ export default class GameScene extends Phaser.Scene {
 
     togglePause() {
         if (this.isPaused) {
-            pauseButton.text.setText("(P)ause");
-            pauseButton.text.x += 6;
+            this.pauseButton.text.setText("(P)ause");
+            this.pauseButton.text.x += 6;
             this.physics.resume();
             this.anims.resumeAll();
         } else {
-            pauseButton.text.setText("un(P)ause");
-            pauseButton.text.x -= 6;
+            this.pauseButton.text.setText("un(P)ause");
+            this.pauseButton.text.x -= 6;
             this.physics.pause();
             this.anims.pauseAll();
         }
