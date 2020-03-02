@@ -3,12 +3,12 @@ import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 
 let scoreText;
-let isPaused = false;
 let pauseButton;
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: "GameScene" });
+        this.isPaused = false;
     }
 
     preload() {
@@ -119,7 +119,7 @@ export default class GameScene extends Phaser.Scene {
 
     update() {
         // debugger
-        if (!isPaused) {
+        if (!this.isPaused) {
             this.scores.currScore += 0.2;
             scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
 
@@ -150,7 +150,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     togglePause() {
-        if (isPaused) {
+        if (this.isPaused) {
             pauseButton.text.setText("(P)ause");
             pauseButton.text.x += 6;
             this.physics.resume();
@@ -161,7 +161,7 @@ export default class GameScene extends Phaser.Scene {
             this.physics.pause();
             this.anims.pauseAll();
         }
-        isPaused = !isPaused;
+        this.isPaused = !this.isPaused;
     }
 
     updatePlatforms(platform) {
