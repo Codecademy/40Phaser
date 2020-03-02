@@ -17,18 +17,17 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
-        // Keep track of score values:
         this.scores = {
             currScore: 0,
             highscore: parseInt(localStorage.getItem("highscore"), 10) || 0,
         };
-        // Input keys:
+
         this.keys = {
             spacebar: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
             pKey: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P),
         };
 
-        // create the codey running animation from sprite sheet
+        // Running animation
         this.anims.create({
             key: "run",
             frames: this.anims.generateFrameNumbers("codey", { start: 0, end: 3 }),
@@ -36,7 +35,7 @@ export default class GameScene extends Phaser.Scene {
             repeat: -1,
         });
 
-        // create the codey running animation from sprite sheet
+        // jumping animation
         this.anims.create({
             key: "jump",
             frames: this.anims.generateFrameNumbers("codey", { start: 3, end: 5 }),
@@ -73,7 +72,7 @@ export default class GameScene extends Phaser.Scene {
         // add the tap/click input
         this.input.on("pointerdown", this.jump, this);
 
-        this.scoreText = this.add.text(16, 16, "this.scores.currScore: 0", {
+        this.scoreText = this.add.text(16, 16, "Score: 0", {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
@@ -115,7 +114,6 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update() {
-        // debugger
         if (!this.isPaused) {
             this.scores.currScore += 0.2;
             this.scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
