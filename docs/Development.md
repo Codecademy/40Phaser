@@ -24,3 +24,15 @@ npm run watch
 
 Open [`http://127.0.0.1:8080/demo`](http://127.0.0.1:8080/demo) to start playing!
 Any changes you make to source files will be visible when you refresh the browser page.
+
+## Updating Versions
+
+Our CircleCI builds will publish new versions as listed in `package.json`.
+To update a version:
+
+1. Create a new branch locally
+2. Run [`npm version`](https://docs.npmjs.com/cli/version) to update `package.json` and `package-lock.json`
+3. Send a pull request to `master` from that branch
+
+Once that PR is merged, CircleCI will publish the new version.
+Hooray!
