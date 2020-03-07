@@ -89,8 +89,17 @@ export default class StartScene extends Phaser.Scene {
             options.backgroundColor,
         );
 
+        // const easterEgg = this.add.rectangle(
+        //     130,
+        //     this.game.config.height - 20,
+        //     90,
+        //     30,
+        //     0x6400e4
+        // );
+
         gameStart.setInteractive();
         buildYourOwn.setInteractive();
+        // easterEgg.setInteractive();
 
         gameStart.on("pointerup", () => {
             this.scene.start("GameScene");
@@ -100,6 +109,20 @@ export default class StartScene extends Phaser.Scene {
         buildYourOwn.on("pointerup", () => {
             window.location.href = "https://www.codecademy.com/learn/learn-phaser";
         });
+
+        // easterEgg.on("pointerup", () => {
+        //     window.location.href = "https://github.com/Codecademy/40Phaser";
+        // })
+
+        // easterEgg.on("pointerover", (item) => {
+        //     item.fillColor = 0xff0000;
+        // })
+
+        // easterEgg.on("pointerout", (item) => {
+        //     console.log(item)
+        //     console.log(`OUT`)
+        //     item.fillColor = 0xff0000;
+        // })
 
         this.add.text(
             this.game.config.width / 2 - 60,
@@ -122,5 +145,22 @@ export default class StartScene extends Phaser.Scene {
                 fill: options.purpleText,
             },
         );
+
+        const easterEgg = this.add.text(90, this.game.config.height - 30, "Easter Egg", {
+            fontFamily: options.fontFamily,
+            fontSize: options.smallFontSize,
+            fill: options.blackText,
+        });
+
+        easterEgg.setInteractive();
+
+        easterEgg.on("pointerup", () => {
+            window.location.href = "https://github.com/Codecademy/40Phaser";
+        });
+
+        easterEgg.on("pointerover", e => {
+            console.log(easterEgg);
+            easterEgg.style.stroke = 0x6400e4;
+        });
     }
 }
