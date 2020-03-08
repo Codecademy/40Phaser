@@ -89,17 +89,17 @@ export default class StartScene extends Phaser.Scene {
             options.backgroundColor,
         );
 
-        // const easterEgg = this.add.rectangle(
-        //     130,
-        //     this.game.config.height - 20,
-        //     90,
-        //     30,
-        //     0x6400e4
-        // );
+        const easterEggButton = this.add.rectangle(
+            this.game.config.width - 90,
+            this.game.config.height - 20,
+            140,
+            30,
+            0xffffff,
+        );
 
         gameStart.setInteractive();
         buildYourOwn.setInteractive();
-        // easterEgg.setInteractive();
+        easterEggButton.setInteractive();
 
         gameStart.on("pointerup", () => {
             this.scene.start("GameScene");
@@ -110,19 +110,9 @@ export default class StartScene extends Phaser.Scene {
             window.location.href = "https://www.codecademy.com/learn/learn-phaser";
         });
 
-        // easterEgg.on("pointerup", () => {
-        //     window.location.href = "https://github.com/Codecademy/40Phaser";
-        // })
-
-        // easterEgg.on("pointerover", (item) => {
-        //     item.fillColor = 0xff0000;
-        // })
-
-        // easterEgg.on("pointerout", (item) => {
-        //     console.log(item)
-        //     console.log(`OUT`)
-        //     item.fillColor = 0xff0000;
-        // })
+        easterEggButton.on("pointerup", () => {
+            window.location.href = "https://github.com/Codecademy/40Phaser";
+        });
 
         this.add.text(
             this.game.config.width / 2 - 60,
@@ -146,21 +136,27 @@ export default class StartScene extends Phaser.Scene {
             },
         );
 
-        const easterEgg = this.add.text(90, this.game.config.height - 30, "Easter Egg", {
-            fontFamily: options.fontFamily,
-            fontSize: options.smallFontSize,
-            fill: options.blackText,
+        const easterEggText = this.add.text(
+            this.game.config.width - 155,
+            this.game.config.height - 60,
+            "Click to contribute!",
+            {
+                fontFamily: options.fontFamily,
+                fontSize: options.smallFontSize,
+                fill: options.blackText,
+            },
+        );
+
+        easterEggText.visible = false;
+
+        easterEggButton.on("pointerover", () => {
+            easterEggText.visible = true;
+            document.querySelector("body").style.cursor = "pointer";
         });
 
-        easterEgg.setInteractive();
-
-        easterEgg.on("pointerup", () => {
-            window.location.href = "https://github.com/Codecademy/40Phaser";
-        });
-
-        easterEgg.on("pointerover", e => {
-            console.log(easterEgg);
-            easterEgg.style.stroke = 0x6400e4;
+        easterEggButton.on("pointerout", () => {
+            easterEggText.visible = false;
+            document.querySelector("body").style.cursor = "default";
         });
     }
 }
