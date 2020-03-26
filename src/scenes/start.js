@@ -91,7 +91,7 @@ export default class StartScene extends Phaser.Scene {
 
         const easterEggButton = this.add.rectangle(
             this.game.config.width - 90,
-            this.game.config.height - 20,
+            this.game.config.height - 50,
             140,
             30,
             0xffffff,
