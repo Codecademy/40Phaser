@@ -37,7 +37,7 @@
         "start": "http-server -c-1",
         "watch": "rollup --config --watch"
     },
-    "version": "0.2.0",
+    "version": "0.2.1",
     "devDependencies": {
         "eslint": "^5.16.0",
         "eslint-config-airbnb": "^17.1.0",
