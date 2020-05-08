@@ -1,6 +1,7 @@
 import options from "../options.js";
 import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
+import strings from "../assets/strings.js";
 
 export default class GameScene extends Phaser.Scene {
     constructor() {
@@ -72,7 +73,7 @@ export default class GameScene extends Phaser.Scene {
         // add the tap/click input
         this.input.on("pointerdown", this.jump, this);
 
-        this.scoreText = this.add.text(16, 16, "Score: 0", {
+        this.scoreText = this.add.text(16, 16, strings.score(0), {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
@@ -88,7 +89,7 @@ export default class GameScene extends Phaser.Scene {
         );
         this.pauseButton.setInteractive();
 
-        this.pauseButton.text = this.add.text(this.game.config.width - 100, 14, "(P)ause", {
+        this.pauseButton.text = this.add.text(this.game.config.width - 100, 14, strings.pause, {
             fontFamily: options.fontFamily,
             fontSize: options.smallFontSize,
             fill: options.whiteText,
@@ -114,9 +115,11 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update() {
+        const newScore = Math.floor(this.scores.currScore);
+
         if (!this.isPaused) {
             this.scores.currScore += 0.2;
-            this.scoreText.setText(`Score: ${Math.floor(this.scores.currScore)}`);
+            this.scoreText.setText(strings.score(newScore));
 
             if (Phaser.Input.Keyboard.JustDown(this.keys.spacebar)) {
                 this.jump();
@@ -142,16 +145,27 @@ export default class GameScene extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(this.keys.pKey)) {
             this.togglePause();
         }
+
+        const ariaLabel = [
+            strings.score(newScore),
+            this.isPaused ? strings.pressPToUnpause : strings.pressPToPause,
+            strings.pressSpaceOrTap,
+        ].join(". ");
+
+        if (ariaLabel !== this.ariaLabel) {
+            this.ariaLabel = ariaLabel;
+            this.game.canvas.setAttribute("aria-label", ariaLabel);
+        }
     }
 
     togglePause() {
         if (this.isPaused) {
-            this.pauseButton.text.setText("(P)ause");
+            this.pauseButton.text.setText(strings.pause);
             this.pauseButton.text.x += 6;
             this.physics.resume();
             this.anims.resumeAll();
         } else {
-            this.pauseButton.text.setText("un(P)ause");
+            this.pauseButton.text.setText(strings.unpause);
             this.pauseButton.text.x -= 6;
             this.physics.pause();
             this.anims.pauseAll();
