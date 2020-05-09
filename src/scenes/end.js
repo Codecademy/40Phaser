@@ -107,6 +107,6 @@ export default class EndScene extends Phaser.Scene {
 
     launchGame() {
         this.scene.start("GameScene");
-        this.scene.stop("StartScene");
+        this.scene.stop("EndScene");
     }
 }
