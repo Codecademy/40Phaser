@@ -15,7 +15,7 @@ export const launch40Phaser = settings => {
         ...settings.phaserOptions,
     };
 
-    return new settings.phaser.Game({
+    const game = new settings.phaser.Game({
         type: Phaser.AUTO,
         width: options.windowWidth,
         height: options.windowHeight,
@@ -30,6 +30,10 @@ export const launch40Phaser = settings => {
         scene: [StartScene, GameScene, EndScene],
         parent: options.parent,
     });
+
+    game.canvas.setAttribute("role", "img");
+
+    return game;
 };
 
 export default launch40Phaser;

@@ -1,3 +1,4 @@
+import strings from "../assets/strings.js";
 import options from "../options.js";
 
 export default class EndScene extends Phaser.Scene {
@@ -8,11 +9,28 @@ export default class EndScene extends Phaser.Scene {
     preload() {}
 
     create(data) {
-        this.createDOMElements(data);
+        this.createShortcuts();
+        this.createTextElements(data);
+
+        this.game.canvas.setAttribute(
+            "aria-label",
+            [
+                strings.score(data.score),
+                strings.highscore(data.highscore),
+                strings.soClose,
+                strings.pressPToPlayAgain,
+                strings.endingInstructions,
+            ].join(". "),
+        );
     }
 
-    createDOMElements({ score, highscore }) {
-        this.add.text(this.game.config.width / 2 - 110, 50, `Score: ${score}`, {
+    createShortcuts() {
+        this.input.keyboard.addKey("b").on("down", () => this.launchBuildYourOwn());
+        this.input.keyboard.addKey("p").on("down", () => this.launchGame());
+    }
+
+    createTextElements({ score, highscore }) {
+        this.add.text(this.game.config.width / 2 - 110, 50, strings.score(score), {
             fontFamily: options.fontFamily,
             fontSize: options.extraLargeFontSize,
             fontStyle: "bold",
@@ -20,17 +38,22 @@ export default class EndScene extends Phaser.Scene {
             align: "center",
         });
 
-        this.add.text(this.game.config.width / 2 - 80, 110, `Highscore: ${highscore}`, {
+        this.add.text(this.game.config.width / 2 - 80, 110, strings.highscore(highscore), {
             fontFamily: options.fontFamily,
             fontSize: options.mediumFontSize,
             fill: options.blackText,
         });
 
-        this.add.text(this.game.config.width / 2 - 35, this.game.config.height / 4, "So Close!", {
-            fontFamily: options.fontFamily,
-            fontSize: options.smallFontSize,
-            fill: options.blackText,
-        });
+        this.add.text(
+            this.game.config.width / 2 - 35,
+            this.game.config.height / 4,
+            strings.soClose,
+            {
+                fontFamily: options.fontFamily,
+                fontSize: options.smallFontSize,
+                fill: options.blackText,
+            },
+        );
 
         const gameReplay = this.add.rectangle(
             this.game.config.width / 2,
@@ -51,19 +74,14 @@ export default class EndScene extends Phaser.Scene {
         gameReplay.setInteractive();
         buildYourOwn.setInteractive();
 
-        gameReplay.on("pointerup", () => {
-            this.scene.stop("EndScene");
-            this.scene.start("GameScene");
-        });
+        gameReplay.on("pointerup", () => this.launchGame());
 
-        buildYourOwn.on("pointerup", () => {
-            window.location.href = "https://www.codecademy.com/learn/learn-phaser";
-        });
+        buildYourOwn.on("pointerup", () => this.launchBuildYourOwn());
 
         this.add.text(
             this.game.config.width / 2 - 40,
             this.game.config.height / 3 + 15,
-            "Play Again",
+            strings.playAgain,
             {
                 fontFamily: options.fontFamily,
                 fontSize: options.smallFontSize,
@@ -74,12 +92,21 @@ export default class EndScene extends Phaser.Scene {
         this.add.text(
             this.game.config.width / 2 - 55,
             this.game.config.height / 2 - 30,
-            "Build your own",
+            strings.buildYourOwn,
             {
                 fontFamily: options.fontFamily,
                 fontSize: options.smallFontSize,
                 fill: options.purpleText,
             },
         );
+    }
+
+    launchBuildYourOwn() {
+        window.location.href = "https://www.codecademy.com/learn/learn-phaser";
+    }
+
+    launchGame() {
+        this.scene.start("GameScene");
+        this.scene.stop("EndScene");
     }
 }
