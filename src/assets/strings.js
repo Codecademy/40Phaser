@@ -1,7 +1,7 @@
 export default {
     buildYourOwn: `(B)uild your own`,
     clickToContribute: `(C)lick to contribute`,
-    endingInstructions: `Press 'p' to play again or 'b' to build your own.`,
+    endingInstructions: `Press 'p' to play again or 'b' to Interested in Phaser Games?.`,
     fourZeroFour: `404`,
     highscore: amount => `Highscore: ${amount}`,
     looksLikeYoureLost: `Looks like you're lost.`,
@@ -15,6 +15,8 @@ export default {
     pressSpaceOrTap: `Press Space or tap the game to jump`,
     score: amount => `Score: ${amount}`,
     soClose: "So Close!",
-    startingInstructions: `Press 'p' to play, 'b' to build your own, or 'c' to contribute.`,
+    startingInstructions: `Press 'p' to play, 'b' to Interested in Phaser Games?, or 'c' to contribute.`,
     unpause: `un(P)ause`,
+    skillpath:`Learn JS and Phaser.js`
+    
 };
