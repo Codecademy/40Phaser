@@ -1,7 +1,7 @@
 import defaultOptions from "./options.js";
-import EndScene from "./scenes/end.js";
-import GameScene from "./scenes/game.js";
-import StartScene from "./scenes/start.js";
+import createEndScene from "./scenes/end.js";
+import createGameScene from "./scenes/game.js";
+import createStartScene from "./scenes/start.js";
 
 const defaultGameSettings = {
     debug: false,
@@ -16,7 +16,7 @@ export const launch40Phaser = settings => {
     };
 
     const game = new settings.phaser.Game({
-        type: Phaser.AUTO,
+        type: settings.phaser.AUTO,
         width: options.windowWidth,
         height: options.windowHeight,
         backgroundColor: options.backgroundColor,
@@ -27,7 +27,11 @@ export const launch40Phaser = settings => {
                 gravity: { y: options.gravity },
             },
         },
-        scene: [StartScene, GameScene, EndScene],
+        scene: [
+            createStartScene(settings.phaser),
+            createGameScene(settings.phaser),
+            createEndScene(settings.phaser),
+        ],
         parent: options.parent,
     });
 
