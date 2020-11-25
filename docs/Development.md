@@ -32,7 +32,7 @@ To update a version:
 
 1. Create a new branch locally
 2. Run [`npm version`](https://docs.npmjs.com/cli/version) to update `package.json` and `package-lock.json`
-3. Send a pull request to `master` from that branch
+3. Send a pull request to `main` from that branch
 
 Once that PR is merged, CircleCI will publish the new version.
 Hooray!
