@@ -1,112 +1,114 @@
 import strings from "../assets/strings.js";
 import options from "../options.js";
 
-export default class EndScene extends Phaser.Scene {
-    constructor() {
-        super({ key: "EndScene" });
-    }
+export default function createEndScene(Phaser) {
+    return class EndScene extends Phaser.Scene {
+        constructor() {
+            super({ key: "EndScene" });
+        }
 
-    preload() {}
+        preload() {}
 
-    create(data) {
-        this.createShortcuts();
-        this.createTextElements(data);
+        create(data) {
+            this.createShortcuts();
+            this.createTextElements(data);
 
-        this.game.canvas.setAttribute(
-            "aria-label",
-            [
-                strings.score(data.score),
-                strings.highscore(data.highscore),
-                strings.soClose,
-                strings.pressPToPlayAgain,
-                strings.endingInstructions,
-            ].join(". "),
-        );
-    }
+            this.game.canvas.setAttribute(
+                "aria-label",
+                [
+                    strings.score(data.score),
+                    strings.highscore(data.highscore),
+                    strings.soClose,
+                    strings.pressPToPlayAgain,
+                    strings.endingInstructions,
+                ].join(". "),
+            );
+        }
 
-    createShortcuts() {
-        this.input.keyboard.addKey("b").on("down", () => this.launchBuildYourOwn());
-        this.input.keyboard.addKey("p").on("down", () => this.launchGame());
-    }
+        createShortcuts() {
+            this.input.keyboard.addKey("b").on("down", () => this.launchBuildYourOwn());
+            this.input.keyboard.addKey("p").on("down", () => this.launchGame());
+        }
 
-    createTextElements({ score, highscore }) {
-        this.add.text(this.game.config.width / 2 - 110, 50, strings.score(score), {
-            fontFamily: options.fontFamily,
-            fontSize: options.extraLargeFontSize,
-            fontStyle: "bold",
-            color: options.blackText,
-            align: "center",
-        });
-
-        this.add.text(this.game.config.width / 2 - 80, 110, strings.highscore(highscore), {
-            fontFamily: options.fontFamily,
-            fontSize: options.mediumFontSize,
-            fill: options.blackText,
-        });
-
-        this.add.text(
-            this.game.config.width / 2 - 35,
-            this.game.config.height / 4,
-            strings.soClose,
-            {
+        createTextElements({ score, highscore }) {
+            this.add.text(this.game.config.width / 2 - 110, 50, strings.score(score), {
                 fontFamily: options.fontFamily,
-                fontSize: options.smallFontSize,
+                fontSize: options.extraLargeFontSize,
+                fontStyle: "bold",
+                color: options.blackText,
+                align: "center",
+            });
+
+            this.add.text(this.game.config.width / 2 - 80, 110, strings.highscore(highscore), {
+                fontFamily: options.fontFamily,
+                fontSize: options.mediumFontSize,
                 fill: options.blackText,
-            },
-        );
+            });
 
-        const gameReplay = this.add.rectangle(
-            this.game.config.width / 2,
-            this.game.config.height / 3 + 25,
-            210,
-            40,
-            options.purpleBox,
-        );
+            this.add.text(
+                this.game.config.width / 2 - 35,
+                this.game.config.height / 4,
+                strings.soClose,
+                {
+                    fontFamily: options.fontFamily,
+                    fontSize: options.smallFontSize,
+                    fill: options.blackText,
+                },
+            );
 
-        const buildYourOwn = this.add.rectangle(
-            this.game.config.width / 2,
-            this.game.config.height / 2 - 20,
-            210,
-            40,
-            options.backgroundColor,
-        );
+            const gameReplay = this.add.rectangle(
+                this.game.config.width / 2,
+                this.game.config.height / 3 + 25,
+                210,
+                40,
+                options.purpleBox,
+            );
 
-        gameReplay.setInteractive();
-        buildYourOwn.setInteractive();
+            const buildYourOwn = this.add.rectangle(
+                this.game.config.width / 2,
+                this.game.config.height / 2 - 20,
+                210,
+                40,
+                options.backgroundColor,
+            );
 
-        gameReplay.on("pointerup", () => this.launchGame());
+            gameReplay.setInteractive();
+            buildYourOwn.setInteractive();
 
-        buildYourOwn.on("pointerup", () => this.launchBuildYourOwn());
+            gameReplay.on("pointerup", () => this.launchGame());
 
-        this.add.text(
-            this.game.config.width / 2 - 40,
-            this.game.config.height / 3 + 15,
-            strings.playAgain,
-            {
-                fontFamily: options.fontFamily,
-                fontSize: options.smallFontSize,
-                fill: options.whiteText,
-            },
-        );
+            buildYourOwn.on("pointerup", () => this.launchBuildYourOwn());
 
-        this.add.text(
-            this.game.config.width / 2 - 55,
-            this.game.config.height / 2 - 30,
-            strings.buildYourOwn,
-            {
-                fontFamily: options.fontFamily,
-                fontSize: options.smallFontSize,
-                fill: options.purpleText,
-            },
-        );
-    }
+            this.add.text(
+                this.game.config.width / 2 - 40,
+                this.game.config.height / 3 + 15,
+                strings.playAgain,
+                {
+                    fontFamily: options.fontFamily,
+                    fontSize: options.smallFontSize,
+                    fill: options.whiteText,
+                },
+            );
 
-    launchBuildYourOwn() {
-        window.location.href = "https://www.codecademy.com/learn/learn-phaser";
-    }
+            this.add.text(
+                this.game.config.width / 2 - 55,
+                this.game.config.height / 2 - 30,
+                strings.buildYourOwn,
+                {
+                    fontFamily: options.fontFamily,
+                    fontSize: options.smallFontSize,
+                    fill: options.purpleText,
+                },
+            );
+        }
 
-    launchGame() {
-        this.scene.start("GameScene");
-        this.scene.stop("EndScene");
-    }
+        launchBuildYourOwn() {
+            window.location.href = "https://www.codecademy.com/learn/learn-phaser";
+        }
+
+        launchGame() {
+            this.scene.start("GameScene");
+            this.scene.stop("EndScene");
+        }
+    };
 }
