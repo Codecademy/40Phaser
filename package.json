@@ -3,7 +3,7 @@
     "bugs": {
         "url": "https://github.com/Codecademy/40Phaser/issues"
     },
-    "description": "Codecademy's new 404 page. WIP",
+    "description": "Codecademy's fancy schmancy 404 page.",
     "homepage": "https://github.com/Codecademy/40Phaser#readme",
     "husky": {
         "hooks": {
