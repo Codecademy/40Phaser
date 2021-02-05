@@ -73,7 +73,7 @@ export default function createStartScene(Phaser) {
             );
 
             this.add.text(
-                this.game.config.width / 2 - 160,
+                this.game.config.width / 2 - 150,
                 this.game.config.height / 2 - 48,
                 strings.looksLikeYoureLost,
                 {
@@ -132,7 +132,7 @@ export default function createStartScene(Phaser) {
             easterEggButton.on("pointerup", () => this.launchContribute());
 
             this.add.text(
-                this.game.config.width / 2 - 57,
+                this.game.config.width / 2 - 53,
                 this.game.config.height / 2 + 110,
                 strings.playTheGame,
                 {
@@ -143,7 +143,7 @@ export default function createStartScene(Phaser) {
             );
 
             this.add.text(
-                this.game.config.width / 2 - 57,
+                this.game.config.width / 2 - 53,
                 this.game.config.height / 2 + 160,
                 strings.buildYourOwn,
                 {
