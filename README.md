@@ -42,6 +42,14 @@ window.onload = () => {
 
 An `on` object may be provided to the `launch40Phaser` object with functions under `end`, `game`, and `start` -- corresponding to those three Phaser scenes in the game.
 
+```js
+launch40Phaser({
+    on: {
+        game: action => console.log('[game]', action),   
+    },
+});
+```
+
 #### `on.end`
 
 * `on.end("build-your-own")`: User navigates to the the Learn Phaser course
