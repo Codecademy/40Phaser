@@ -50,9 +50,13 @@ export default function createGameScene(Phaser) {
                 immovable: true,
             });
 
-            for (let i = 0; i < 8; i += 1) {
+            for (let i = 0; i < 5; i += 1) {
                 this.addPlatform(110 * i);
             }
+
+            this.addPlatform(125 * 5);
+            this.addPlatform(135 * 6);
+            this.addPlatform(140 * 7);
 
             this.player = this.physics.add.sprite(100, this.game.config.height - 100, "codey");
 
