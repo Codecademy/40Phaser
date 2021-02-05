@@ -3,7 +3,7 @@ import platformImg from "../assets/platform-test.png";
 import codeyImg from "../assets/codey_sprite.png";
 import strings from "../assets/strings.js";
 
-export default function createGameScene(Phaser) {
+export default function createGameScene({ on, phaser: Phaser }) {
     return class GameScene extends Phaser.Scene {
         constructor() {
             super({ key: "GameScene" });
@@ -113,6 +113,7 @@ export default function createGameScene(Phaser) {
                 this.player.body.setAccelerationY(1000);
                 this.player.setVelocityY(-options.jumpForce);
             }
+            on.game("jump");
         }
 
         update() {
@@ -136,6 +137,7 @@ export default function createGameScene(Phaser) {
                     this.scores.highscore = Math.max(this.scores.highscore, this.scores.currScore);
                     localStorage.setItem("highscore", Math.floor(this.scores.highscore));
 
+                    on.game("death");
                     this.scene.start("EndScene", {
                         score: Math.floor(this.scores.currScore),
                         highscore: Math.floor(this.scores.highscore),
@@ -161,11 +163,13 @@ export default function createGameScene(Phaser) {
 
         togglePause() {
             if (this.isPaused) {
+                on.game("unpause");
                 this.pauseButton.text.setText(strings.pause);
                 this.pauseButton.text.x += 6;
                 this.physics.resume();
                 this.anims.resumeAll();
             } else {
+                on.game("pause");
                 this.pauseButton.text.setText(strings.unpause);
                 this.pauseButton.text.x -= 6;
                 this.physics.pause();

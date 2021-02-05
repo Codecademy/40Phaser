@@ -4,7 +4,7 @@ import error404Img from "../assets/404.svg";
 import codeyImg from "../assets/codey_sprite.png";
 import strings from "../assets/strings.js";
 
-export default function createStartScene(Phaser) {
+export default function createStartScene({ on, phaser: Phaser }) {
     return class StartScene extends Phaser.Scene {
         constructor() {
             super({ key: "StartScene" });
@@ -178,14 +178,17 @@ export default function createStartScene(Phaser) {
         }
 
         launchBuildYourOwn() {
+            on.start("build-your-own");
             window.location.href = "https://www.codecademy.com/learn/learn-phaser";
         }
 
         launchContribute() {
+            on.start("contribute");
             window.location.href = "https://github.com/Codecademy/40Phaser";
         }
 
         launchGame() {
+            on.start("game");
             this.scene.start("GameScene");
             this.scene.stop("StartScene");
         }

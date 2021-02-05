@@ -38,6 +38,28 @@ window.onload = () => {
 };
 ```
 
+### Events
+
+An `on` object may be provided to the `launch40Phaser` object with functions under `end`, `game`, and `start` -- corresponding to those three Phaser scenes in the game.
+
+#### `on.end`
+
+* `on.end("build-your-own")`: User navigates to the the Learn Phaser course
+* `on.end("game")`: User restarts the game
+
+#### `on.game`
+
+* `on.game("death")`: User dies by falling through the floor
+* `on.game("jump")`: User requests to jump
+* `on.game("pause")`: User unpauses
+* `on.game("unpause")`: User pauses
+
+#### `on.start`
+
+* `on.start("build-your-own")`: User navigates to the Learn Phaser course
+* `on.start("contribute")`: User navigates to the GitHub repository
+* `on.start("game")`: User starts the game
+
 ## Development
 
 See [Development.md](./docs/Development.md)! ✨

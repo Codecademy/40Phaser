@@ -1,7 +1,7 @@
 import strings from "../assets/strings.js";
 import options from "../options.js";
 
-export default function createEndScene(Phaser) {
+export default function createEndScene({ on, phaser: Phaser }) {
     return class EndScene extends Phaser.Scene {
         constructor() {
             super({ key: "EndScene" });
@@ -103,10 +103,12 @@ export default function createEndScene(Phaser) {
         }
 
         launchBuildYourOwn() {
+            on.end("build-your-own");
             window.location.href = "https://www.codecademy.com/learn/learn-phaser";
         }
 
         launchGame() {
+            on.end("game");
             this.scene.start("GameScene");
             this.scene.stop("EndScene");
         }
