@@ -24,6 +24,11 @@ minimal-ui"
             window.addEventListener("load", () => {
                 launch40Phaser({
                     debug: true,
+                    on: {
+                        game: event => console.log("[game]", event),
+                        end: event => console.log("[end]", event),
+                        start: event => console.log("[start]", event),
+                    },
                     phaserOptions: {
                         parent: "container",
                         windowHeight: Math.min(window.innerHeight, 600),

@@ -5,11 +5,20 @@ import createStartScene from "./scenes/start.js";
 
 const defaultGameSettings = {
     debug: false,
+    on: {
+        end: () => {},
+        game: () => {},
+        start: () => {},
+    },
     phaser: window.Phaser,
 };
 
 export const launch40Phaser = settings => {
-    settings = { ...defaultGameSettings, ...settings };
+    settings = {
+        ...defaultGameSettings,
+        ...settings,
+        on: { ...defaultGameSettings.on, ...settings.on },
+    };
     const options = {
         ...defaultOptions,
         ...settings.phaserOptions,
@@ -27,11 +36,7 @@ export const launch40Phaser = settings => {
                 gravity: { y: options.gravity },
             },
         },
-        scene: [
-            createStartScene(settings.phaser),
-            createGameScene(settings.phaser),
-            createEndScene(settings.phaser),
-        ],
+        scene: [createStartScene(settings), createGameScene(settings), createEndScene(settings)],
         parent: options.parent,
     });
 
