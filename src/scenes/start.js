@@ -1,7 +1,4 @@
 import options from "../options.js";
-import platformImg from "../assets/platform-test.png";
-import error404Img from "../assets/404.svg";
-import codeyImg from "../assets/codey_sprite.png";
 import strings from "../assets/strings.js";
 
 export default function createStartScene({ on, phaser: Phaser }) {
@@ -11,12 +8,22 @@ export default function createStartScene({ on, phaser: Phaser }) {
         }
 
         preload() {
-            this.load.image("platform", platformImg);
-            this.load.image("404image", error404Img);
-            this.load.spritesheet("codey", codeyImg, {
-                frameWidth: 72,
-                frameHeight: 72,
-            });
+            this.load.image(
+                "platform",
+                "https://static-assets.codecademy.com/assets/40phaser/platform-test.png",
+            );
+            this.load.image(
+                "404image",
+                "https://static-assets.codecademy.com/assets/40phaser/404.svg",
+            );
+            this.load.spritesheet(
+                "codey",
+                "https://static-assets.codecademy.com/assets/40phaser/codey_sprite.png",
+                {
+                    frameWidth: 72,
+                    frameHeight: 72,
+                },
+            );
         }
 
         create() {
