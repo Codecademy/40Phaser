@@ -1,6 +1,4 @@
 import options from "../options.js";
-import platformImg from "../assets/platform-test.png";
-import codeyImg from "../assets/codey_sprite.png";
 import strings from "../assets/strings.js";
 
 export default function createGameScene({ on, phaser: Phaser }) {
@@ -11,11 +9,18 @@ export default function createGameScene({ on, phaser: Phaser }) {
         }
 
         preload() {
-            this.load.image("platform", platformImg);
-            this.load.spritesheet("codey", codeyImg, {
-                frameWidth: 72,
-                frameHeight: 72,
-            });
+            this.load.image(
+                "platform",
+                "https://static-assets.codecademy.com/assets/40phaser/platform-test.png",
+            );
+            this.load.spritesheet(
+                "codey",
+                "https://static-assets.codecademy.com/assets/40phaser/codey_sprite.png",
+                {
+                    frameWidth: 72,
+                    frameHeight: 72,
+                },
+            );
         }
 
         create() {
